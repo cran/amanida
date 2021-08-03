@@ -4,7 +4,7 @@
 #' \code{amanida_read} imports the data and formats for \code{compute_amanida} 
 #' or \code{amanida_vote} functions
 #'
-#' Note that \code{amanida_read} skips rows with missing values or NA.
+#' Note that \code{amanida_read} skips rows with missing values or NA. Negatives values for fold-change are transformed to positive (1/value). 
 #'
 #' Formats compatible are csv, xlsx, xls or txt.
 #' 
@@ -14,25 +14,26 @@
 #'   \item "quan" for quantitative meta-analysis using p-value and fold-change
 #'   \item "qual" for qualitative meta-analysis using trend label
 #'   }
-#' @param coln columns names to use
+#' @param coln columns names to use. It has to be in order identification, p-values, fold-changes, sample size and reference.
 #' @param separator the separator used on file
 #' @return tibble table with data imported
 #' 
 #' @import dplyr
 #' @import readr
 #' @import readxl
-#' @importFrom magrittr %>%
 #' @importFrom stats complete.cases
 #' 
 #' @examples
-#' coln = c("Compound Name", "P-value", "Fold-change", "N total", "References")
-#' input_file <- system.file("extdata", "dataset2.csv", package = "amanida")
+#' coln <-  c("Compound Name", "P-value", "Fold-change", "N total", "References")
+#' input_file <- getsampleDB()
 #' datafile <- amanida_read(input_file, mode = "quan", coln, separator=";")
 #' 
 #' @export
 
 amanida_read <- function(file, mode, coln, separator=NULL) {
   . = NULL; foldchange = NULL; pvalue = NULL; N = NULL; 
+  
+  set.seed(123)
   
   VAR_NAMES <- c('id', 'pvalue', 'foldchange', 'N', 'ref')
 
@@ -55,8 +56,10 @@ amanida_read <- function(file, mode, coln, separator=NULL) {
     stop("Format not compatible; try csv, tsv, excel or txt. Aborting.")
   }
   
+  misrow <- sum(!complete.cases(datafile))
+  
   if (mode == "quan") {
-    datafile %>%
+    datafile <- datafile %>%
       # Select columns with data needed
       select(all_of(coln)) %>%
       # Only complete cases and rename
@@ -82,12 +85,12 @@ amanida_read <- function(file, mode, coln, separator=NULL) {
   } else if (mode == "qual") {
     VAR_NAMES <- c('id', 'trend', 'ref')
     
-    datafile %>%
+    datafile <- datafile %>%
       # Select columns with data needed
       select(all_of(coln)) %>%
       # Only complete cases and rename
       filter(complete.cases(.)) %>%
-      rename_with(.cols = everything(), .fn = ~ VAR_NAMES) %>% 
+      rename_with(.cols = everything(), .fn = ~ VAR_NAMES) %>%
       mutate(trend = case_when(
         tolower(trend) == "down" ~ -1,
         T ~ 1
@@ -95,4 +98,10 @@ amanida_read <- function(file, mode, coln, separator=NULL) {
   } else {
     stop("Please, indicate mode: 'quan' for quantitative and 'qual' for qualitative")
   }
+  
+  message(paste("Loaded dataset with", nrow(datafile),"rows which contains", 
+                length(unique(datafile$id)), "different identifiers. There are",
+                misrow, "rows skipped from original dataset because contained NA values."))
+  return(datafile)
 }
+

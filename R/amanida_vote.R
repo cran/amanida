@@ -1,5 +1,5 @@
 
-#' Quanlitative meta-analysis
+#' Qualitative meta-analysis
 #' 
 #' \code{amanida_vote} performs vote-counting on qualitative data. 
 #' 
@@ -26,9 +26,11 @@
 
 amanida_vote <- function(data) {
     . = NULL; votes = NULL; articles = NULL; vote_counting = NULL; trend = NULL;
+    
+    set.seed(123)
   
   vote <-  data %>%
-    group_by(`id`) %>% 
+    dplyr::group_by(`id`) %>%
     summarize(
       # Votes per compound
       votes = sum(trend),

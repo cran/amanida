@@ -15,7 +15,7 @@ amanida_read(file, mode, coln, separator = NULL)
 \item "qual" for qualitative meta-analysis using trend label
 }}
 
-\item{coln}{columns names to use}
+\item{coln}{columns names to use. It has to be in order identification, p-values, fold-changes, sample size and reference.}
 
 \item{separator}{the separator used on file}
 }
@@ -27,13 +27,13 @@ tibble table with data imported
 or \code{amanida_vote} functions
 }
 \details{
-Note that \code{amanida_read} skips rows with missing values or NA.
+Note that \code{amanida_read} skips rows with missing values or NA. Negatives values for fold-change are transformed to positive (1/value).
 
 Formats compatible are csv, xlsx, xls or txt.
 }
 \examples{
-coln = c("Compound Name", "P-value", "Fold-change", "N total", "References")
-input_file <- system.file("extdata", "dataset2.csv", package = "amanida")
+coln <-  c("Compound Name", "P-value", "Fold-change", "N total", "References")
+input_file <- getsampleDB()
 datafile <- amanida_read(input_file, mode = "quan", coln, separator=";")
 
 }
