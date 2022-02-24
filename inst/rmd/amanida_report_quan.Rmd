@@ -101,8 +101,7 @@ kbl(amanida_result@stat %>%
              "Trend" = trend,
              "P-value combined" = pval,
              "Fold-change combined" = fc,
-             "Total sample size" = N_total,
-             "Reference" = reference), 
+             "Total sample size" = N_total), 
       booktabs = T, 
       caption = "Table 2: Quantitative analysis",
     align = "c") %>%
@@ -110,6 +109,8 @@ kbl(amanida_result@stat %>%
   scroll_box(width = "100%", height = "400px") %>%
   footnote(symbol = c("Value over cut-offs"))
 ```
+
+*Note: \* indicates the result is statistical significant* 
 
 
 ### Significant results for quantitative analysis
@@ -146,8 +147,10 @@ Here, the explore_plot will only display the relevant identifiers (elements bigg
 As dataset is big, on the following plot will be only displayed elements bigger than `r params$votecount_lim` votes and the elements with discrepancies between studies:
 
 ```{r pressure, echo=T, message=TRUE}
-explore_plot(datafile, type = "mix", params$votecount_lim)
+amanida::explore_plot(datafile, type = "mix", params$votecount_lim)
 ```
+
+*Note: Plots are limited to 30 compounds for readability, for complete plot download from ubidi.shinyapps.io/easy-amanida*
 
 It is important to check if our significant compounds have discrepancies on the reports. 
 
