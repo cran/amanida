@@ -41,7 +41,8 @@ explore_plot(sample_data, type = "mix", counts = 1)
 #                 column_id = column_id,
 #                 pvalue_cutoff = 0.05,
 #                 fc_cutoff = 4,
-#                 votecount_lim = 2)
+#                 votecount_lim = 2,
+#                 comp_inf = F)
 
 ## -----------------------------------------------------------------------------
 sessionInfo()
