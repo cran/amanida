@@ -1,8 +1,8 @@
-9d4103d4e62f3241741a53bb7fe83496 *DESCRIPTION
+0e8a770e785d9a75c58688d5782044e3 *DESCRIPTION
 08156d758649a3e4aebd776335a4afbb *NAMESPACE
 a309f9f7f19359be6805beb12ef6aa17 *R/amanida.R
 a66f4a0f084d3b0be4057beeb3b1dc77 *R/amanida_read.R
-de88d46fd1b7e78ee98b79a39f7dff05 *R/amanida_report.R
+891be25a55bcbb6d1c483855ffaf55cf *R/amanida_report.R
 6227b08d832dd842d91fb8c68df85357 *R/amanida_vote.R
 aeb79e665682ba8d128b6ee4318fd156 *R/class.R
 03c1c9537c89e7443e26b2f4335d4deb *R/compute_amanida.R
@@ -15,7 +15,7 @@ a03dcd263fc75d960e9eb278e6a8ba18 *build/vignette.rds
 c3aa4730a14f2a3673c876b9a26599aa *data/sample_data.rda
 0d3d7dc711c972b949c3527dab23f2ac *inst/doc/amanida_UserGuide.R
 8380ac37d5d9a48a41120fecb7c8e8b2 *inst/doc/amanida_UserGuide.Rmd
-5b7c21cc2aaeaad0b8e80875ed9e0754 *inst/doc/amanida_UserGuide.html
+3cb25f6a45a9b599b1f9e1dd594c2156 *inst/doc/amanida_UserGuide.html
 a37e3d41c9dd0d4db6eb15461b16d3f4 *inst/extdata/dataset2.csv
 f6f6d867c6bee775638524815de56e22 *inst/rmd/amanida_report_qual.Rmd
 609336e722e6f2a7ebaee99a6269c704 *inst/rmd/amanida_report_quan.Rmd
@@ -33,9 +33,12 @@ e0825dd77924cdadea4efb1e76b4f64e *man/sample_data.Rd
 c067e9171a8de490a65fa502507e83cc *man/volcano_plot.Rd
 fe96134e87cfe74781b1b37c3997fe11 *man/vote_plot.Rd
 22a22a5ef4bd5039f311296f70634d18 *tests/testthat.R
+71cdbe69e132653dacc0e42ba89165e4 *tests/testthat/_snaps/plots/explore-plot.svg
+23bb369219ba1c6a4448386a03b903db *tests/testthat/_snaps/plots/volcano-plot-of-adapted-meta-analysis-results.svg
+6c1d7e0fed9156860e653b26312b312a *tests/testthat/_snaps/plots/vote-plot.svg
 44638de435818b8804110a2811df48db *tests/testthat/test-analysis.R
 fdb6fd1af99f5086cc7c4c0dd2f12f25 *tests/testthat/test-import.R
 87e4aa8e51e54c640ed8e87c377cfc4e *tests/testthat/test-plots.R
-154f787c02384e0bdd437ed50e71fd4f *tests/testthat/test-report.R
+d8511bbfa7428298ec89307b65b92a5b *tests/testthat/test-report.R
 01e166c075adcb0ec2acd41606a89470 *tests/testthat/test-votes.R
 8380ac37d5d9a48a41120fecb7c8e8b2 *vignettes/amanida_UserGuide.Rmd
