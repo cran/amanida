@@ -1,8 +1,8 @@
-0e8a770e785d9a75c58688d5782044e3 *DESCRIPTION
+8b635c53beaf0a0a611cc8d51216b71e *DESCRIPTION
 08156d758649a3e4aebd776335a4afbb *NAMESPACE
 a309f9f7f19359be6805beb12ef6aa17 *R/amanida.R
 a66f4a0f084d3b0be4057beeb3b1dc77 *R/amanida_read.R
-891be25a55bcbb6d1c483855ffaf55cf *R/amanida_report.R
+6326a7efa2f06b7a1fa6a92b9bfb274b *R/amanida_report.R
 6227b08d832dd842d91fb8c68df85357 *R/amanida_vote.R
 aeb79e665682ba8d128b6ee4318fd156 *R/class.R
 03c1c9537c89e7443e26b2f4335d4deb *R/compute_amanida.R
@@ -15,7 +15,7 @@ a03dcd263fc75d960e9eb278e6a8ba18 *build/vignette.rds
 c3aa4730a14f2a3673c876b9a26599aa *data/sample_data.rda
 0d3d7dc711c972b949c3527dab23f2ac *inst/doc/amanida_UserGuide.R
 8380ac37d5d9a48a41120fecb7c8e8b2 *inst/doc/amanida_UserGuide.Rmd
-3cb25f6a45a9b599b1f9e1dd594c2156 *inst/doc/amanida_UserGuide.html
+aa332f7d1cd427509ed44cb828ef74ec *inst/doc/amanida_UserGuide.html
 a37e3d41c9dd0d4db6eb15461b16d3f4 *inst/extdata/dataset2.csv
 f6f6d867c6bee775638524815de56e22 *inst/rmd/amanida_report_qual.Rmd
 609336e722e6f2a7ebaee99a6269c704 *inst/rmd/amanida_report_quan.Rmd
@@ -39,6 +39,6 @@ fe96134e87cfe74781b1b37c3997fe11 *man/vote_plot.Rd
 44638de435818b8804110a2811df48db *tests/testthat/test-analysis.R
 fdb6fd1af99f5086cc7c4c0dd2f12f25 *tests/testthat/test-import.R
 87e4aa8e51e54c640ed8e87c377cfc4e *tests/testthat/test-plots.R
-d8511bbfa7428298ec89307b65b92a5b *tests/testthat/test-report.R
+8c34281fe6d06942b8bb6692452c7855 *tests/testthat/test-report.R
 01e166c075adcb0ec2acd41606a89470 *tests/testthat/test-votes.R
 8380ac37d5d9a48a41120fecb7c8e8b2 *vignettes/amanida_UserGuide.Rmd
