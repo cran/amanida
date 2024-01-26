@@ -18,13 +18,15 @@
 #' @param pvalue_cutoff numeric value to consider statistical significance
 #' @param fc_cutoff numeric value to consider significance for effect size
 #' @param votecount_lim minimum numeric value for vote-counting visualization
-#' @param comp_inf complete information of compounds from public databases
+#' @param comp_inf name checking using information from public databases
 #' @return an html document saved in the working directory
 #' 
 #' @import rmarkdown
 #' @importFrom kableExtra kbl kable_styling scroll_box footnote
 #' @import knitr
-#' @import tidyverse
+#' @import dplyr
+#' @import tidyr
+#' @import ggplot2
 #' 
 #' @examples
 #' \dontrun{

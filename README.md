@@ -85,11 +85,17 @@ input_file <- system.file("extdata", "dataset2.csv", package = "amanida")
 datafile <- amanida_read(input_file, mode = "qual", coln, separator=";")
 ```
 
+Before the meta-analysis the IDs can be checked using public databases information. The IDs in format chemical name, InChI, InChIKey, and SMILES are searched in PubChem to transform all into a common nomenclature using `webchem` package. Harmonization names process is based in *Villalba H, Llambrich M, Gumà J, Brezmes J, Cumeras R. A Metabolites Merging Strategy (MMS): Harmonization to Enable Studies’ Intercomparison. Metabolites. 2023; 13(12):1167. https://doi.org/10.3390/metabo13121167*
+
+```{r}
+datafile <- check_names(datafile)
+```
+
 
 **3. Perform adapted meta-analysis: `compute_amanida`**
 
 ```r
-amanida_result <- compute_amanida(datafile)
+amanida_result <- compute_amanida(datafile, comp.inf = F)
 ```
 
 In this step you will obtain an S4 object with two tables:
@@ -97,7 +103,9 @@ In this step you will obtain an S4 object with two tables:
 * adapted meta-analysis acces by `amanida_result@stat`
 * vote-counting acces by `amanida_results@vote`
 
-**4. Perform quanlitative meta-analysis: `amanida_vote`**
+Selecting the option `comp.inf = T` the package need the previous use of `check_names`. Then using PubChem ID duplicates are checked. Results are returned including the following information: PubChem ID, Molecular Formula, Molecular Weight, SMILES, InChIKey, KEGG, ChEBI, HMDB, Drugbank. 
+
+**4. Perform qualitative meta-analysis: `amanida_vote`**
 
 
 ```r
@@ -108,9 +116,11 @@ data_votes <- amanida_read(input_file, mode = "qual", coln, separator = ";")
 vote_result <- amanida_vote(data_votes)
 ```
 
+For qualitative analysis the `check_names` can be also used, following the same procedure explained in Section 2. 
+
 In this step you will obtain an S4 object with one table:
 
-* vote-counting acces by `vote_results@vote`
+* vote-counting access by `vote_results@vote`
 
 #### Plots
 
@@ -149,6 +159,7 @@ All results using Amanida can be obtained in a single step using `amanida_report
 * pvalue_cutoff: numeric value where the p-value will be considered as significant, usually 0.05
 * fc_cutoff: numeric value where the fold-change will be considered as significant, usually 2
 * votecount_lim: numeric value set as minimum to show vote-counting results
+* comp_inf: to include name checking and IDs retrieval.
 
 And for quantitative analysis report:
 * file: path to the dataset
@@ -156,6 +167,7 @@ And for quantitative analysis report:
 * analysis_type: specify "qual"
 * column_id: nomes of columns to be used, see `amanida_read` documentation for more information
 * votecount_lim: numeric value set as minimum to show vote-counting results
+* comp_inf: to include name checking and IDs retrieval.
 
 ```r
 column_id = c("Compound Name", "P-value", "Fold-change", "N total", "References")
@@ -166,7 +178,8 @@ amanida_report(input_file,
                 analysis_type = "quan", 
                 pvalue_cutoff = 0.05, 
                 fc_cutoff = 4, 
-                votecount_lim = 2)
+                votecount_lim = 2, 
+                comp_inf = F)
   
 ```
 

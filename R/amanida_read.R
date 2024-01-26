@@ -60,6 +60,7 @@ amanida_read <- function(file, mode, coln, separator=NULL) {
   misrow <- sum(!complete.cases(datafile))
   
   if (mode == "quan") {
+    
     datafile <- datafile |>
       # Select columns with data needed
       select(all_of(coln)) |>

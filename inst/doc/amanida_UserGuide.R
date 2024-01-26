@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -16,22 +16,25 @@ coln = c("Compound Name", "P-value", "Fold-change", "N total", "References")
 input_file <- getsampleDB()
 datafile <- amanida_read(input_file, mode = "quan", coln, separator=";")
 
+## ----eval = F-----------------------------------------------------------------
+#  datafile <- check_names(datafile)
+
 ## -----------------------------------------------------------------------------
-amanida_result <- compute_amanida(datafile)
+amanida_result <- compute_amanida(datafile, comp.inf = F)
 
 ## -----------------------------------------------------------------------------
 head(amanida_result@stat)
 
-## ---- fig.width = 7, fig.height = 9-------------------------------------------
+## ----fig.width = 7, fig.height = 9--------------------------------------------
 volcano_plot(amanida_result, cutoff = c(0.05,3.5))
 
-## ---- fig.width = 5, fig.height = 6-------------------------------------------
+## ----fig.width = 5, fig.height = 6--------------------------------------------
 vote_plot(amanida_result, counts = 1)
 
-## ---- fig.width = 6.5, fig.height = 8.5---------------------------------------
+## ----fig.width = 6.5, fig.height = 8.5----------------------------------------
 explore_plot(sample_data, type = "mix", counts = 1)
 
-## ---- eval = F----------------------------------------------------------------
+## ----eval = F-----------------------------------------------------------------
 #  column_id = c("Compound Name", "P-value", "Fold-change", "N total", "References")
 #  input_file <- getsampleDB()
 #  

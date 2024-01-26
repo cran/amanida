@@ -32,6 +32,8 @@ volcano_plot <- function(mets, cutoff = NULL) {
   #'    volcano_plot(amanida_result)
   #' }
   #'
+  #' @import ggplot2
+  #' @import dplyr
   #' @export
   #' 
   
@@ -163,6 +165,8 @@ vote_plot <- function(mets, counts = NULL) {
   #'     vote_plot(result)
   #' }
   #' 
+  #' @import ggplot2
+  #' @import dplyr
   #' @export
   #' 
   
@@ -243,7 +247,7 @@ explore_plot <- function(data, type = "all", counts = NULL) {
   #' 
   #' Sum of votes divided by trend are plotted, then is obtained the total result by compound summing both trends.  
   #'  
-  #' @param data an tibble obtained by \code{amanida_read}
+  #' @param data an tibble obtained by \code{amanida_read} w/o names checked by \code{check_names}
   #' @param type select the subset of data to plot. Options are: 
   #' \itemize{
   #'    \item "all": all data will be displayed
@@ -255,6 +259,8 @@ explore_plot <- function(data, type = "all", counts = NULL) {
   #' @return a ggplot bar-plot showing the sum of votes for each compound divided by the trend
   #' 
   #' @importFrom stats reorder
+  #' @import ggplot2
+  #' @import dplyr
   #' 
   #' @examples 
   #' data("sample_data")
@@ -281,6 +287,11 @@ explore_plot <- function(data, type = "all", counts = NULL) {
   } 
   
   message("Cut-off for votes is ", cuts, ".", sep = "")
+  
+  if("cid" %in% colnames(data)){
+    
+    data$id <- tolower(unlist(data$id_mod))
+  }
   
   if (type == "all") {
     dt <- data |>
@@ -370,7 +381,7 @@ explore_plot <- function(data, type = "all", counts = NULL) {
         scale_fill_manual(values = col_palette[2:3]) +
         geom_segment(aes(x = 0, xend = vc, 
                          y = id, yend = id, linetype = lab),
-                     size = 0.4, alpha = 0.9, 
+                     linewidth = 0.4, alpha = 0.9, 
                      arrow = arrow(length = unit(0.1, "cm")), 
                      lineend = "round", linejoin = "round") +
         scale_x_continuous(labels = abs, limits = max_p * c(-1,1) * 1.01) +
